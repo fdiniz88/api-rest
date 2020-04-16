@@ -13,7 +13,7 @@ import br.com.AppBarAPI.repository.IBebidaRepository;
 public class BebidaService {
 	
 	@Autowired
-	private IBebidaRepository repository;
+	IBebidaRepository repository;
 
 	public List<Bebida> obterLista(){
 		return (List<Bebida>)repository.findAll();
@@ -31,10 +31,4 @@ public class BebidaService {
 		repository.deleteById(id);
 	}
 
-	public IBebidaRepository getRepository() {
-		return repository;
-	}
-	public void setRepository(IBebidaRepository repository) {
-		this.repository = repository;
-	}
 }

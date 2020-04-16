@@ -43,10 +43,4 @@ public class PetiscoController {
 		service.excluir(id);
 	}
 
-	public PetiscoService getService() {
-		return service;
-	}
-	public void setService(PetiscoService service) {
-		this.service = service;
-	}
 }

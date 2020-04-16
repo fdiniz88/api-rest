@@ -1,5 +1,6 @@
 package br.com.AppBarAPI.negocio;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,8 +14,11 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(name = "Nome", nullable = false, length = 200)
 	private String nome;
-	private Integer idade;
+	@Column(name = "Idade", nullable = false)
+	private long idade;
+	@Column(name = "Genero", nullable = false, length = 200)
 	private String genero;	
 	
 	public Cliente() {	
@@ -37,10 +41,10 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public Integer getIdade() {
+	public long getIdade() {
 		return idade;
 	}
-	public void setIdade(Integer idade) {
+	public void setIdade(long idade) {
 		this.idade = idade;
 	}
 	public String getGenero() {

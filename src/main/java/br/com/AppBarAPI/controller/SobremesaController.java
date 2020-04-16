@@ -42,11 +42,4 @@ public class SobremesaController {
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
 	}
-
-	public SobremesaService getService() {
-		return service;
-	}
-	public void setService(SobremesaService service) {
-		this.service = service;
-	}
 }

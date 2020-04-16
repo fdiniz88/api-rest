@@ -42,11 +42,4 @@ public class ProdutoController {
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
 	}
-
-	public ProdutoService getService() {
-		return service;
-	}
-	public void setService(ProdutoService service) {
-		this.service = service;
-	}
 }

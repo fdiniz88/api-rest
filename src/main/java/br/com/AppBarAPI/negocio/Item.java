@@ -1,5 +1,6 @@
 package br.com.AppBarAPI.negocio;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +13,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "TItem")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Item {
 
 	@Id
@@ -27,22 +26,22 @@ public class Item {
 	@Column(name = "Descricao", nullable = false, length = 200)
 	private String descricao;
 
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)//PERSIST
 	@JoinColumn(name = "idPedido")
 	@JsonBackReference
 	private Pedido pedido;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-	@JoinColumn(name = "idProduto")
-	@JsonBackReference
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)//PERSIST
+	@JoinColumn(name = "idProduto")	
 	private Produto produto;
 
 	public Item() {
 	}
 
-	public Item(String descricao, Pedido pedido) {
+	public Item(String descricao, Produto produto, Pedido pedido) {
 		this();
 		setDescricao(descricao);
+		setProduto(produto);
 		setPedido(pedido);
 	}
 

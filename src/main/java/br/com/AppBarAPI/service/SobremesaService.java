@@ -13,7 +13,7 @@ import br.com.AppBarAPI.repository.ISobremesaRepository;
 public class SobremesaService {
 	
 	@Autowired
-	private ISobremesaRepository repository;
+	ISobremesaRepository repository;
 
 	public List<Sobremesa> obterLista(){
 		return (List<Sobremesa>)repository.findAll();
@@ -29,12 +29,5 @@ public class SobremesaService {
 	
 	public void excluir(Integer id) {
 		repository.deleteById(id);
-	}
-
-	public ISobremesaRepository getRepository() {
-		return repository;
-	}
-	public void setRepository(ISobremesaRepository repository) {
-		this.repository = repository;
 	}
 }

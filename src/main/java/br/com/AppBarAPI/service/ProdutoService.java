@@ -13,7 +13,7 @@ import br.com.AppBarAPI.repository.IProdutoRepository;
 public class ProdutoService {
 	
 	@Autowired
-	private IProdutoRepository repository;
+	IProdutoRepository repository;
 
 	public List<Produto> obterLista(){
 		return (List<Produto>)repository.findAll();
@@ -31,10 +31,4 @@ public class ProdutoService {
 		repository.deleteById(id);
 	}
 
-	public IProdutoRepository getRepository() {
-		return repository;
-	}
-	public void setRepository(IProdutoRepository repository) {
-		this.repository = repository;
-	}
 }

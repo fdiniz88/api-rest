@@ -13,7 +13,7 @@ import br.com.AppBarAPI.repository.IPetiscoRepository;
 public class PetiscoService {
 	
 	@Autowired
-	private IPetiscoRepository repository;
+	IPetiscoRepository repository;
 
 	public List<Petisco> obterLista(){
 		return (List<Petisco>)repository.findAll();
@@ -31,10 +31,5 @@ public class PetiscoService {
 		repository.deleteById(id);
 	}
 
-	public IPetiscoRepository getRepository() {
-		return repository;
-	}
-	public void setRepository(IPetiscoRepository repository) {
-		this.repository = repository;
-	}
+
 }

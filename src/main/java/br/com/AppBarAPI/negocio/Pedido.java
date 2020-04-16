@@ -1,5 +1,7 @@
 package br.com.AppBarAPI.negocio;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -15,7 +17,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 
@@ -27,7 +28,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	@Column(name = "descricao")
+	@Column(name = "Descricao", length = 100, nullable = false)
 	private String descricao;
 	
 	@OneToOne(
@@ -43,10 +44,13 @@ public class Pedido {
 			cascade = CascadeType.PERSIST
 			)		
 
-    @JsonManagedReference
+	//@JsonManagedReference
 	private List<Item> itens;
 	
+	
+	
 	public Pedido(){
+		itens = new ArrayList<Item>();
 	}
 	
 	public Pedido(Integer id, String descricao) {

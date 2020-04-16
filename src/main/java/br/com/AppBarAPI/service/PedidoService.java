@@ -13,7 +13,7 @@ import br.com.AppBarAPI.repository.IPedidoRepository;
 public class PedidoService {
 	
 	@Autowired
-	private IPedidoRepository repository;
+	IPedidoRepository repository;
 
 	public List<Pedido> obterLista(){
 		return (List<Pedido>)repository.findAll();
@@ -31,10 +31,5 @@ public class PedidoService {
 		repository.deleteById(id);
 	}
 
-	public IPedidoRepository getRepository() {
-		return repository;
-	}
-	public void setRepository(IPedidoRepository repository) {
-		this.repository = repository;
-	}
+	
 }

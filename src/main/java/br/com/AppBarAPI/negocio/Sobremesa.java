@@ -2,6 +2,7 @@ package br.com.AppBarAPI.negocio;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -9,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -20,26 +23,31 @@ import org.hibernate.annotations.OnDeleteAction;
 @PrimaryKeyJoinColumn(name = "idProduto")
 public class Sobremesa extends Produto {
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Validade", nullable = false)
 	private Date validade;
+	@Column(name = "Tamanho", length = 100, nullable = false)
 	private String tamanho;
+	@Column(name = "FeitoHoje", nullable = false)
 	private boolean isFeitoHone;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProduto", nullable = false)
-	@MapsId
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Produto produto;
-	
-	public Sobremesa() {	
+
+	public Sobremesa()	{
 		super();
 	}
-	
+
 	public Sobremesa(Date validade, String tamanho, boolean isFeitoHone) {
-		this();
+		super();
 		this.setValidade(validade);
 		this.setTamanho(tamanho);
-		this.setFeitoHone(isFeitoHone);		
+		this.setFeitoHone(isFeitoHone);
 	}
+
+	
+	/*
+	 * public Sobremesa(Integer id, String descricao, Float preco) { super(id,
+	 * descricao, preco); }
+	 */
 	
 	public Date getValidade() {
 		return validade;
@@ -63,20 +71,10 @@ public class Sobremesa extends Produto {
 
 	public void setFeitoHone(boolean isFeitoHone) {
 		this.isFeitoHone = isFeitoHone;
-	}	
+	}
+
+
 	
-	public int getIdProduto() {
-		return produto.getId();
-	}
-
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
-
 	@Override
 	public String toString() {
 		return "Sobremesa -> tamanho=" + this.getTamanho() 

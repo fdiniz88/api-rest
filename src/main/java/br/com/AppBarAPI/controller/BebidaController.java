@@ -41,11 +41,5 @@ public class BebidaController {
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
 	}
-
-	public BebidaService getService() {
-		return service;
-	}
-	public void setService(BebidaService service) {
-		this.service = service;
-	}
+	
 }

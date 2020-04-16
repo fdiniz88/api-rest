@@ -45,12 +45,4 @@ public class PedidoController {
 	public void excluir(@PathVariable Integer id) {
 		service.excluir(id);
 	}
-
-	public PedidoService getService() {
-		return service;
-	}
-	
-	public void setService(PedidoService service) {
-		this.service = service;
-	}
 }

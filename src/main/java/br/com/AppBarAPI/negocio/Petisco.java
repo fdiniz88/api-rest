@@ -2,6 +2,7 @@ package br.com.AppBarAPI.negocio;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -9,6 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -19,28 +22,30 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "TPetisco")
 @PrimaryKeyJoinColumn(name = "idProduto")
 
-public  class Petisco extends Produto {
+public class Petisco extends Produto {
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "Validade", nullable = false)
 	private Date validade;
+
+	@Column(name = "Tipo", length = 100, nullable = false)
 	private String tipo;
-	private boolean isFeitoHoje;
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "idProduto", nullable = false)
-	@MapsId
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private Produto produto;
-		
-	public Petisco() {
+	@Column(name = "FeitoHoje", nullable = false)
+	private boolean isFeitoHoje;	
+
+	public Petisco()	{
 		super();
 	}
+
+
 	
 	public Petisco(Date validade, String tipo, boolean isFeitoHoje) {
+		super();
 		this.setValidade(validade);
 		this.setTipo(tipo);
 		this.setFeitoHoje(isFeitoHoje);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Petisco -> tipo=" + this.getTipo() 
@@ -71,15 +76,5 @@ public  class Petisco extends Produto {
 	public void setFeitoHoje(boolean isFeitoHoje) {
 		this.isFeitoHoje = isFeitoHoje;
 	}	
-	public int getIdProduto() {
-		return produto.getId();
-	}
 
-	public Produto getProduto() {
-		return produto;
-	}
-
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
 }
